@@ -78,6 +78,48 @@ class AddressBook {
         });
         return contactList;
     }
+
+    deleteContact(contactList) {
+        let fName = prompt("Enter the First Name of the Contact : ");
+        contactList.forEach(contact => {
+            if ((contact.firstName === fName) == true) {
+                let index = contactList.indexOf(fName);
+                contactList.splice(index, 1);
+                console.log("Contact is deleted");
+            } else {
+                console.log("No contact present with this name!");
+            }
+        });
+        return contactList;
+    }
+    searchContact(contactList) {
+        console.log("1. search by City");
+        console.log("2. search by State");
+        let option = parseInt(prompt("Enter your choice : "));
+
+        switch (option) {
+            case 1:
+                let city = prompt("Enter the City you want to search the person for : ");
+                contactList.forEach(contact => {
+                    if (contact.city == city) {
+                        console.log(contact);
+                    }
+                });
+                break;
+            case 2:
+                let state = prompt("Enter the State you want to search the person for : ");
+                contactList.forEach(contact => {
+                    if (contact.state == state) {
+                        console.log(contact);
+                    }
+                });
+                break;
+            default:
+                console.log("You have entered invalid input!");
+                break;
+        }
+    }
 }
+
 
 module.exports = AddressBook;
